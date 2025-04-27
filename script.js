@@ -3,6 +3,7 @@ let take = 5;
 let totalItems = 0;
 let allTasks = [];
 const today = new Date('2025-04-27');
+const BASE_URL = "http://192.168.16.59:5000";
 
 function showLoadingSpinner() {
     document.getElementById('loadingSpinner').style.display = 'block';
@@ -30,7 +31,7 @@ async function addToDoItem() {
 
     try {
         showLoadingSpinner();
-        const response = await fetch('https://localhost:7149/api/toDoItem/add', {
+        const response = await fetch( BASE_URL + '/api/toDoItem/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -64,7 +65,7 @@ async function fetchTasks() {
     take = parseInt(document.getElementById('take').value) || 5;
     try {
         showLoadingSpinner();
-        const response = await fetch(`https://localhost:7149/api/toDoItem/getAll?skip=${skip}&take=${take}`);
+        const response = await fetch( BASE_URL + `/api/toDoItem/getAll?skip=${skip}&take=${take}`);
         if (!response.ok) {
             throw new Error('Failed to fetch tasks');
         }
@@ -105,7 +106,7 @@ async function updateTask() {
 
     try {
         showLoadingSpinner();
-        const response = await fetch('https://localhost:7149/api/toDoItem/update', {
+        const response = await fetch( BASE_URL + '/api/toDoItem/update', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -134,7 +135,7 @@ async function updateTask() {
 async function deleteTask(id) {
     try {
         showLoadingSpinner();
-        const deleteResponse = await fetch(`https://localhost:7149/api/toDoItem/delete?id=${id}`, {
+        const deleteResponse = await fetch( BASE_URL + `/api/toDoItem/delete?id=${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

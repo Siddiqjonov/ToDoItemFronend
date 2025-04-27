@@ -35,6 +35,7 @@ async function addToDoItem() {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin' : 'https://siddiqjonov.github.io'
             },
             body: JSON.stringify(toDoItem)
         });
